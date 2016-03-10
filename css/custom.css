@@ -1,9 +1,10 @@
 body {
-
+    margin:10px;
 }
-#startButton{
+.mainButton{
     width:100px;
     height:40px;
+    margin:0 auto;
     background-color:#1a242f;
     color:#FFFFFF;
     padding-top:10px;
@@ -11,7 +12,24 @@ body {
     cursor:pointer;
     font-size: 22px;
 }
-#startButton:hover{
+.mainButton:hover{
  background-color:#253c54;   
 }
+
+#console, #player{
+    margin:10px;
+    
+}
+
+#consoleInfo{
+    width:180px;
+    border:1px solid #000000;
+    padding:10px;
+}
+#playerInfo{
+    float:right;
+    border:1px solid #000000;
+    padding:10px;
+}
+
 

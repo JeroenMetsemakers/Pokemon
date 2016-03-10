@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
+        <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/custom.css" />
 
         <script src="js/libs/jquery/jquery-2.1.4.js"></script> 
@@ -15,18 +16,25 @@
         <section id="container">
             <section id="console">
                 <article id="consoleInfo"></article>
-                <article id="consolePokemon"></article>              
+                <article id="consoleControl"></article>              
                 <article id="consoleTrainer"></article>        
             </section>
-            <article id="main">
-                <article id="startButton">Start</article>
-                       
-                
+            <article id="main"> 
+                <form id="startForm">
+                    <input type="text" id="playerName" name="playerName" placeholder="Nickname..." required>
+                    <select id="playerPokemon" name="playerPokemon">
+                        <option value="onix">Onix</option>
+                        <option value="squirtle">Squirtle</option>
+                        <option value="Pickachu">Pickachu</option>
+                    </select>
+                </form>
+                <article class="mainButton" id="startGameButton">Start Game</article>
+                <article class="mainButton" id="startFightButton">Start Fight</article>                    
             </article>
             <section id="player">
-                <article id="playerInfo"></article>
-                <article id="playerPokemon"></article>              
-                <article id="playerTrainer"></article>        
+                <article id="playerTrainer"></article>  
+                <article id="playerControl"></article>              
+                <article id="playerInfo"></article>                
             </section>
         </section>
     </body>
