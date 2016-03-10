@@ -16,13 +16,12 @@
         <section id="container">
             <section id="console">
                 <article id="consoleInfo"></article>
-                <article id="consoleControl"></article>              
-                <article id="consoleTrainer"></article>        
+                <article id="consolePokemon"></article>                    
             </section>
             <article id="main"> 
                 <form id="startForm">
                     <input type="text" id="playerName" name="playerName" placeholder="Nickname..." required>
-                    <select id="playerPokemon" name="playerPokemon">
+                    <select id="playerPokemonChoice" name="playerPokemonChoice">
                         <option value="onix">Onix</option>
                         <option value="squirtle">Squirtle</option>
                         <option value="Pickachu">Pickachu</option>
@@ -32,9 +31,17 @@
                 <article class="mainButton" id="startFightButton">Start Fight</article>                    
             </article>
             <section id="player">
-                <article id="playerTrainer"></article>  
-                <article id="playerControl"></article>              
-                <article id="playerInfo"></article>                
+                <article id="playerPokemon"></article> 
+                <article id="playerInfo"></article>                 
+                <article id="playerAction"></article>  
+                <article id="playerControl">
+                    <form id="controlButtons">
+                        <article class="attackButton" id="attackOne">Attack One</article>
+                        <article class="attackButton" id="attackTwo">Attack two</article>           
+                        <article class="attackButton" id="attackThree">Attack Three</article>
+                        <article class="attackButton" id="attackFour">Attack Four</article>                         
+                    </form>    
+                </article>                  
             </section>
         </section>
     </body>

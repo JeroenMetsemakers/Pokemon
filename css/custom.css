@@ -1,6 +1,8 @@
 body {
     margin:10px;
 }
+
+/*  All buttons  */
 .mainButton{
     width:100px;
     height:40px;
@@ -15,6 +17,23 @@ body {
 .mainButton:hover{
  background-color:#253c54;   
 }
+
+.attackButton{
+    width:100px;
+    height:40px;
+    margin:0 auto;
+    background-color:#1a242f;
+    color:#FFFFFF;
+    padding-top:10px;
+    text-align:center;
+    cursor:pointer;
+    font-size: 22px;
+    display:inline-block;
+}
+.attackButton:hover{
+ background-color:#253c54;   
+}
+
 
 #console, #player{
     margin:10px;
