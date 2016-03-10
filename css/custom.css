@@ -1,9 +1,17 @@
-﻿@import url(https://fonts.googleapis.com/css?family=Lato:400,900);
-
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    background: #f8ffe8; /* Old browsers */
-    color: #2D3E50;
+
+}
+#startButton{
+    width:100px;
+    height:40px;
+    background-color:#1a242f;
+    color:#FFFFFF;
+    padding-top:10px;
+    text-align:center;
+    cursor:pointer;
+    font-size: 22px;
+}
+#startButton:hover{
+ background-color:#253c54;   
 }
 
