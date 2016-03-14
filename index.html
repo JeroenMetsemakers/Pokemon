@@ -15,7 +15,9 @@
     <body>
         <section id="container">
             <section id="console">
-                <article id="consoleInfo"></article>
+                <article id="consoleInfo">
+                    <article id="showConsoleHP"></article>
+                </article>
                 <article id="consolePokemon"></article>                    
             </section>
             <article id="main"> 
@@ -24,23 +26,25 @@
                     <select id="playerPokemonChoice" name="playerPokemonChoice">
                         <option value="onix">Onix</option>
                         <option value="squirtle">Squirtle</option>
-                        <option value="Pickachu">Pickachu</option>
+                        <option value="pickachu">Pickachu</option>
                     </select>
                 </form>
-                <article class="mainButton" id="startGameButton">Start Game</article>
-                <article class="mainButton" id="startFightButton">Start Fight</article>                    
+                <button class="mainButton" id="startGameButton">Start Game</button>
+                <button class="mainButton" id="startFightButton">Start Fight</button>                    
             </article>
             <section id="player">
                 <article id="playerPokemon"></article> 
-                <article id="playerInfo"></article>                 
+                <article id="playerInfo">
+                    <article id="showPlayerHP"></article>                    
+                </article>                 
                 <article id="playerAction"></article>  
                 <article id="playerControl">
-                    <form id="controlButtons">
-                        <article class="attackButton" id="attackOne">Attack One</article>
-                        <article class="attackButton" id="attackTwo">Attack two</article>           
-                        <article class="attackButton" id="attackThree">Attack Three</article>
-                        <article class="attackButton" id="attackFour">Attack Four</article>                         
-                    </form>    
+                    <article id="controlButtons">
+                        <button class="attackButton" value="1" id="attackButtonOne">Attack One</button>
+                        <button class="attackButton" value="2" id="attackButtonTwo">Attack two</button>           
+                        <button class="attackButton" value="3" id="attackButtonThree">Attack Three</button>
+                        <button class="attackButton" value="4" id="attackButtonFour">Attack Four</button>                         
+                    </article>    
                 </article>                  
             </section>
         </section>
