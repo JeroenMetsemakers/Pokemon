@@ -37,19 +37,20 @@ body {
 .attackButton:hover{
  background-color:#253c54;   
 }
-.inactive{
-    cursor:default;
-    background-color: #737373;
-    opacity:0.4;
-    
-    
-}
-.inactive:hover{
-    cursor:default;
+.inactiveButton{
+    width:180px;
+    height:70px;
+    margin:0 auto;
     background-color: #737373;
     opacity:0.4;    
-    
+    color:#FFFFFF;
+    padding-top:10px;
+    text-align:center;
+    cursor:default;
+    font-size: 22px;
+    display:inline-block;    
 }
+
 /*  Console  */
 
 #console{
