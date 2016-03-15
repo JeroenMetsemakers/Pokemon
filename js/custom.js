@@ -1,21 +1,16 @@
 $(document).ready(function () {
-
+    
     /// Declareer alle (globale) variabelen ////////////////////////////////////
     var hp_player = 100;
     var hp_console = 100;
     var turn = true;
-
     var playerName = "Player";
     var consoleName = "Giovanni";
-
     var playerPokemon = "Default";
     var consolePokemon = "Default";
-
     var attack = "";
 
-
     //// Declareer alle (globale) functies /////////////////////////////////////
-
     var time_out = function (elem_id, delayms, input) {
         setTimeout(function () {
             $(elem_id).append(input);
@@ -33,8 +28,9 @@ $(document).ready(function () {
         var timestep = time / attack;
         var counter = 0;
         var sleepyAlert = setInterval(function () {
+            var HP_temp = HP - Math.round(counter / timestep);
+            $(location).html("<progress value='" + HP_temp + "' max='100'></progress> " + HP_temp);
 
-            $(location).html(HP - Math.round(counter / timestep));
             if (Math.round(counter) === time) {
                 clearInterval(sleepyAlert);
             }
@@ -54,13 +50,12 @@ $(document).ready(function () {
                     hp_player = 0;
                     CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
                     win_alert(1500, consoleName + " won!!");
-
                 } else {
+                    console.log("case1Else");
                     CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
                     setTimeout(function () {
-                        $(".inactiveButton").hide();                        
+                        $(".inactiveButton").hide();
                         $(".attackButton").show();
-
                     }, 2000);
                 }
                 break;
@@ -74,36 +69,34 @@ $(document).ready(function () {
                     hp_player = 0;
                     CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
                     win_alert(1500, consoleName + " won!!");
-
                 } else {
+                    console.log("case2Else");
                     CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
                     setTimeout(function () {
-                        $(".inactiveButton").hide();                        
+                        $(".inactiveButton").hide();
                         $(".attackButton").show();
-
                     }, 2000);
-                }                
+                }
                 break;
 
             case 3 :
                 console.log(consoleName + " kiest aanval 3");
-                attack = 10;
+                attack = 20;
                 hp_player = hp_player - attack;
                 if (hp_player <= 0) {
                     var hp_player_temp = hp_player + attack;
                     hp_player = 0;
                     CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
                     win_alert(1500, consoleName + " won!!");
-
                 } else {
-                    console.log("case1Else");
+                    console.log("case3Else");
                     CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
                     setTimeout(function () {
-                        $(".inactiveButton").hide();                        
+                        $(".inactiveButton").hide();
                         $(".attackButton").show();
 
                     }, 2000);
-                }                
+                }
                 break;
 
             case 4 :
@@ -115,52 +108,37 @@ $(document).ready(function () {
                     hp_player = 0;
                     CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
                     win_alert(1500, consoleName + " won!!");
-
                 } else {
-                    console.log("case1Else");
+                    console.log("case4Else");
                     CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
                     setTimeout(function () {
-                        $(".inactiveButton").hide();                        
+                        $(".inactiveButton").hide();
                         $(".attackButton").show();
 
                     }, 2000);
-                }                
+                }
                 break;
         }
-
-
-
-
-        //Cases naar gelang gekozen aanval
-        //Zelfde logica als hierboven        
-
-
     };
-
 
     $("#startFightButton, #startForm, #console, #player, .inactiveButton").hide();
 
     /// Hier begint het spel ///////////////////////////////////////////////////
     /// Begin met invoeren van naam en pokemon /////////////////////////////////
     $("#startGameButton").click(function () {
-
         $("#startGameButton").hide();
         $("#startFightButton, #startForm").show();
-
     });
 
     // Begin het gevecht na selecteren van naam en pokemon /////////////////////
     $("#startFightButton").click(function () {
-
         playerName = $("#playerName").val();
         playerPokemon = $("#playerPokemonChoice option:selected").val();
-
         $("#startFightButton, #startForm").hide();
         $("#console, #player").show();
 
         // Op basis van keuze speler de betreffende pokemon(naam) inladen //////    
         switch (playerPokemon) {
-
             case "onix" :
                 $("#playerInfo").append("Onix");
                 $("#playerPokemon").append("<img src=\'img/pokemon/Charmander.png\'>");
@@ -171,16 +149,14 @@ $(document).ready(function () {
                 $("#playerPokemon").append("<img src=\'img/pokemon/Squirtle.png\'>");
                 break;
 
-            case "pickachu" :
-                $("#playerInfo").append("Pickachu");
+            case "pikachu" :
+                $("#playerInfo").append("Pikachu");
                 $("#playerPokemon").append("<img src=\'img/pokemon/Alakazam.png\'>");
                 break;
         }
 
-
         // Console genereert random een pokemon om mee te vechten //////////////
         var x = Math.round(Math.random() * 2) + 1;
-
         switch (x) {
             case 1 :
                 $("#consoleInfo").append("Onix");
@@ -193,25 +169,19 @@ $(document).ready(function () {
                 break;
 
             case 3 :
-                $("#consoleInfo").append("Pickachu");
+                $("#consoleInfo").append("Pikachu");
                 $("#consolePokemon").append("<img src=\'img/pokemon/Alakazam.png\'>");
                 break;
         }
 
         $("#consoleInfo").append("<h1>" + consoleName + ": </h1><br/>");
-        $("#showConsoleHP").html(hp_console);
-
+        $("#showConsoleHP").html("<progress value='" + hp_console + "' max='100'></progress> 100");
         $("#playerInfo").append("<h1>" + playerName + ": </h1><br/>");
-        $("#showPlayerHP").html(hp_player);
-
-        $("#playerAction").append("<p>What will " + playerPokemon + " do?</p><br/>");
-
-
+        $("#showPlayerHP").html("<progress value='" + hp_player + "' max='100'></progress> 100");
+        $("#playerAction").append("<p>What will " + playerPokemon + " do?</p>");
 
         //Zolang beide spelers leven hebben ze om en om een beurt (turn = true / false)
-
         $(".attackButton").click(function () {
-
             if (hp_player > 0 && hp_console > 0) {
                 $(".attackButton").hide();
                 $(".inactiveButton").show();
@@ -219,53 +189,76 @@ $(document).ready(function () {
                 attack = $(this).val();
                 switch (attack) {
                     case "1" :
-                        attack = 50;
-                        hp_console = hp_console - attack;
-                        if (hp_console <= 0) {
-                            var hp_console_temp = hp_console + attack;
-                            hp_console = 0;
-                            CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
-                            win_alert(1500, "You won!!");
-
+                        var missChance = Math.round(Math.random() * 4) + 1;
+                        console.log(missChance);
+                        if (missChance === 5) {
+                            attack = 50;
+                            hp_console = hp_console - attack;
+                            if (hp_console <= 0) {
+                                var hp_console_temp = hp_console + attack;
+                                hp_console = 0;
+                                CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
+                                win_alert(1500, "You won!! <br/> Your score is " + hp_player);
+                            } else {
+                                CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                                setTimeout(function () {
+                                    console_turn();
+                                }, 5000);
+                            }
                         } else {
-                            CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                            alert("You missed!!");
                             setTimeout(function () {
                                 console_turn();
-                            }, 5000);
+                            }, 2000);
                         }
                         break;
-
                     case "2" :
-                        attack = 30;
-                        hp_console = hp_console - attack;
-                        if (hp_console <= 0) {
-                            var hp_console_temp = hp_console + attack;
-                            hp_console = 0;
-                            CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
-                            win_alert(1500, "You won!!");
-
+                        var missChance = Math.round(Math.random() * 2) + 1;
+                        console.log(missChance);
+                        if (missChance === 3) {
+                            attack = 30;
+                            hp_console = hp_console - attack;
+                            if (hp_console <= 0) {
+                                var hp_console_temp = hp_console + attack;
+                                hp_console = 0;
+                                CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
+                                win_alert(1500, "You won!!<br/> Your score is " + hp_player);
+                            } else {
+                                CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                                setTimeout(function () {
+                                    console_turn();
+                                }, 5000);
+                            }
                         } else {
-                            CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                            alert("You missed!!");
                             setTimeout(function () {
                                 console_turn();
-                            }, 5000);
+                            }, 2000);
                         }
                         break;
 
                     case "3" :
-                        attack = 20;
-                        hp_console = hp_console - attack;
-                        if (hp_console <= 0) {
-                            var hp_console_temp = hp_console + attack;
-                            hp_console = 0;
-                            CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
-                            win_alert(1500, "You won!!");
-
+                        var missChance = Math.round(Math.random() * 2) + 1;
+                        console.log(missChance);
+                        if (missChance >= 2) {
+                            attack = 20;
+                            hp_console = hp_console - attack;
+                            if (hp_console <= 0) {
+                                var hp_console_temp = hp_console + attack;
+                                hp_console = 0;
+                                CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
+                                win_alert(1500, "You won!!<br/> Your score is " + hp_player);
+                            } else {
+                                CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                                setTimeout(function () {
+                                    console_turn();
+                                }, 5000);
+                            }
                         } else {
-                            CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                            alert("You missed!!");
                             setTimeout(function () {
                                 console_turn();
-                            }, 5000);
+                            }, 2000);
                         }
                         break;
 
@@ -276,8 +269,7 @@ $(document).ready(function () {
                             var hp_console_temp = hp_console + attack;
                             hp_console = 0;
                             CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
-                            win_alert(1500, "You won!!");
-
+                            win_alert(1500, "You won!!<br/> Your score is " + hp_player);
                         } else {
                             CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
                             setTimeout(function () {
@@ -287,11 +279,8 @@ $(document).ready(function () {
                         break;
                 }
             } else {
-                alert("Console's turn bitch!!");
-
-
-            }
-            ;
+                alert("One of you is already dead :/");
+            };
         });
     });
 });      
