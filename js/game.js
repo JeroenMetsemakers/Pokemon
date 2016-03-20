@@ -2,7 +2,6 @@ $(document).ready(function () {
     var hp_player = 100;
     var hp_console = 100;
     var turn = true;
-    var playerName = "Player";
     var consoleName = "Giovanni";
     var playerPokemon = "Default";
     var consolePokemon = "Default";
@@ -12,6 +11,23 @@ $(document).ready(function () {
         setTimeout(function () {
             $(elem_id).append(input);
         }, delayms);
+    };
+
+    var typing = function (string) {
+        var string_dummy = "";
+        var period = 35;
+        var endTime = period * (string.length - 1);
+        var counter = 0;
+
+        var sleepyAlert = setInterval(function () {
+            string_dummy = string_dummy.concat(string.charAt(0));
+            $("#textField").html(string_dummy);
+            if (counter === endTime) {
+                clearInterval(sleepyAlert);
+            }
+            string = string.substr(1);
+            counter += period;
+        }, period);
     };
 
     var win_alert = function (delayms, input) {
@@ -36,112 +52,133 @@ $(document).ready(function () {
     };
 
     var playerAttack = function (pl_pokemon, cs_pokemon) {
-        $("#container").animate({backgroundPositionX: "-=200px"}).delay(3000).animate({backgroundPositionX: "+=200px"});
-        $("#playerPokemon").html("<img class='mirror' src=\'gif/pokemon/" + pl_pokemon + "/front.gif\'>").delay(1000)
+        $("#container").animate({backgroundPositionX: "-=700px"}).delay(3000).animate({backgroundPositionX: "+=700px"});
+        $("#playerPokemon").html("<img class='mirror' src=\'../gif/pokemon/" + pl_pokemon + "/front2.gif\'>").delay(1000)
                 .show(function () {
-                    $(this).html("<img class='mirror' src=\'gif/pokemon/" + pl_pokemon + "/attack1.gif'>");
+                    $(this).html("<img class='mirror' src=\'../gif/pokemon/" + pl_pokemon + "/attack1.gif'>");
                 }).delay(1600)
                 .show(function () {
-                    $(this).html("<img class='mirror' src=\'gif/pokemon/" + pl_pokemon + "/front.gif'>");
+                    $(this).html("<img class='mirror' src=\'../gif/pokemon/" + pl_pokemon + "/front2.gif'>");
                 }).delay(1000)
                 .show(function () {
-                    $(this).html("<img src=\'gif/pokemon/" + pl_pokemon + "/back.gif'>");
+                    $(this).html("<img src=\'../gif/pokemon/" + pl_pokemon + "/back2.gif'>");
                 }).delay(1000);
-        $("#consolePokemon").html("<img class='mirror' src=\'gif/pokemon/" + cs_pokemon + "/back.gif\'>").delay(3600)
+        $("#consolePokemon").html("<img class='mirror' src=\'../gif/pokemon/" + cs_pokemon + "/back.gif\'>").delay(3600)
                 .show(function () {
-                    $(this).html("<img src=\'gif/pokemon/" + cs_pokemon + "/front.gif'>");
+                    $(this).html("<img src=\'../gif/pokemon/" + cs_pokemon + "/front2.gif'>");
                 }).delay(1000);
     };
 
     var consoleAttack = function (cs_pokemon) {
-        console.log(cs_pokemon);
-        $("#consolePokemon").html("<img src=\'gif/pokemon/" + cs_pokemon + "/attack1.gif\'>").delay(2000)
+        $("#consolePokemon").html("<img src=\'../gif/pokemon/" + cs_pokemon + "/attack1.gif\'>").delay(2000)
                 .show(function () {
-                    $(this).html("<img src=\'gif/pokemon/" + cs_pokemon + "/front.gif'>");
+                    $(this).html("<img src=\'../gif/pokemon/" + cs_pokemon + "/front2.gif'>");
                 });
     };
 
     var console_turn = function () {
-        var consoleAction = 1;
+        var consoleAction = Math.round(Math.random() * 3) + 1;
 
         switch (consoleAction) {
             case 1 :
-                console.log(consoleName + " kiest aanval 1");
+                typing("Enemies " + consolePokemon + " uses attack One!");
                 attack = 50;
                 hp_player = hp_player - attack;
                 if (hp_player <= 0) {
                     var hp_player_temp = hp_player + attack;
                     hp_player = 0;
-                    CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
-                    win_alert(1500, consoleName + " won!!");
+                    setTimeout(function () {
+                        CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
+                        typing("It's super effective!");
+                    }, 2000);
+                    consoleAttack(consolePokemon);
+                    win_alert(3500, consoleName + " won!!");
                 } else {
-                    setTimeout(function () {                    
+                    setTimeout(function () {
                         CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
-                    }, 2000);                   
+                    }, 2000);
                     consoleAttack(consolePokemon);
                     setTimeout(function () {
                         $(".inactiveButton").hide();
                         $(".attackButton").show();
-                    }, 4000);
+                    }, 4200);
                 }
                 break;
 
             case 2 :
-                console.log(consoleName + " kiest aanval 2");
+                typing("Enemies " + consolePokemon + " uses attack Two!");
                 attack = 30;
                 hp_player = hp_player - attack;
                 if (hp_player <= 0) {
                     var hp_player_temp = hp_player + attack;
                     hp_player = 0;
-                    CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
-                    win_alert(1500, consoleName + " won!!");
+                    setTimeout(function () {
+                        CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
+                        typing("It's super effective!");
+                    }, 2000);
+                    consoleAttack(consolePokemon);
+                    win_alert(3500, consoleName + " won!!");
                 } else {
-                    console.log("case2Else");
-                    CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
+                    setTimeout(function () {
+                        CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
+                    }, 2000);
+                    consoleAttack(consolePokemon);
                     setTimeout(function () {
                         $(".inactiveButton").hide();
                         $(".attackButton").show();
-                    }, 2000);
+                    }, 4200);
                 }
                 break;
 
             case 3 :
-                console.log(consoleName + " kiest aanval 3");
+                typing("Enemies " + consolePokemon + " uses attack Three!");
                 attack = 20;
                 hp_player = hp_player - attack;
                 if (hp_player <= 0) {
                     var hp_player_temp = hp_player + attack;
                     hp_player = 0;
-                    CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
-                    win_alert(1500, consoleName + " won!!");
+                    setTimeout(function () {
+                        CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
+                        typing("It's super effective!");
+                    }, 2000);
+
+                    consoleAttack(consolePokemon);
+                    win_alert(3500, consoleName + " won!!");
                 } else {
-                    console.log("case3Else");
-                    CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
+                    setTimeout(function () {
+                        CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
+                    }, 2000);
+                    consoleAttack(consolePokemon);
                     setTimeout(function () {
                         $(".inactiveButton").hide();
                         $(".attackButton").show();
 
-                    }, 2000);
+                    }, 4200);
                 }
                 break;
 
             case 4 :
-                console.log(consoleName + " kiest aanval 4");
+                typing("Enemies " + consolePokemon + " uses attack Four!");
                 attack = 10;
                 hp_player = hp_player - attack;
                 if (hp_player <= 0) {
                     var hp_player_temp = hp_player + attack;
                     hp_player = 0;
-                    CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
-                    win_alert(1500, consoleName + " won!!");
+                    setTimeout(function () {
+                        CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
+                        typing("It's super effective!");
+                    }, 2000);
+                    consoleAttack(consolePokemon);
+                    win_alert(3500, consoleName + " won!!");
                 } else {
-                    console.log("case4Else");
-                    CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
+                    setTimeout(function () {
+                        CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
+                    }, 2000);
+                    consoleAttack(consolePokemon);
                     setTimeout(function () {
                         $(".inactiveButton").hide();
                         $(".attackButton").show();
-
-                    }, 2000);
+                    }, 4200);
                 }
                 break;
         }
@@ -150,12 +187,23 @@ $(document).ready(function () {
     $("#startFightButton, #startForm, #console, #player, .inactiveButton").hide();
 
     $("#startGameButton").click(function () {
-        $("#startGameButton").hide();
-        $("#startFightButton, #startForm").show();
+        $("#startGameButton").fadeOut();
+
+
+
+        setTimeout(function () {
+            $("#container").css("background-image", "url(../gif/gameboy/Startup.gif)");
+        }, 500);
+        setTimeout(function () {
+            $("#container").css("background-image", "url('')");
+        }, 4500);
+        setTimeout(function () {
+            $("#startFightButton, #startForm").fadeIn();
+        }, 5000);
     });
 
     $("#startFightButton").click(function () {
-        playerName = $("#playerName").val();
+        $("#container").css("background-image", "url(../img/background/bg.png)");
         playerPokemon = $("#playerPokemonChoice option:selected").text();
         $("#startFightButton, #startForm").hide();
         $("#console, #player").show();
@@ -163,46 +211,44 @@ $(document).ready(function () {
         switch (playerPokemon) {
             case "Bulbasaur" :
                 $("#playerInfo").append("Bulbasaur");
-                $("#playerPokemon").append("<img src=\'gif/pokemon/Bulbasaur/back.gif\'>");
+                $("#playerPokemon").append("<img src=\'../gif/pokemon/Bulbasaur/back2.gif\'>");
                 break;
 
             case "Charizard" :
                 $("#playerInfo").append("Charizard");
-                $("#playerPokemon").append("<img src=\'gif/pokemon/Charizard/front.gif\'>");
+                $("#playerPokemon").append("<img src=\'../gif/pokemon/Charizard/front2.gif\'>");
                 break;
 
             case "Pikachu" :
                 $("#playerInfo").append("Pikachu");
-                $("#playerPokemon").append("<img src=\'img/pokemon/Alakazam.png\'>");
+                $("#playerPokemon").append("<img src=\'../img/pokemon/Alakazam.png\'>");
                 break;
         }
 
         var x = Math.round(Math.random() * 2) + 1;
         switch (x) {
             case 1 :
-                $("#consoleInfo").append("Bulbasaur");
+                $("#enemyName").append("Bulbasaur");
                 consolePokemon = "Bulbasaur";
-                $("#consolePokemon").append("<img src=\'gif/pokemon/bulbasaur/front.gif\'>");
+                $("#consolePokemon").append("<img src=\'../gif/pokemon/bulbasaur/front2.gif\'>");
                 break;
 
             case 2 :
-                $("#consoleInfo").append("Charizard");
+                $("#enemyName").append("Charizard");
                 consolePokemon = "Charizard";
-                $("#consolePokemon").append("<img src=\'gif/pokemon/charizard/front.gif\'>");
+                $("#consolePokemon").append("<img src=\'../gif/pokemon/charizard/front.gif\'>");
                 break;
 
             case 3 :
-                $("#consoleInfo").append("Pikachu");
+                $("#enemyName").append("Pikachu");
                 consolePokemon = "Pikachu";
-                $("#consolePokemon").append("<img src=\'img/pokemon/Alakazam.png\'>");
+                $("#consolePokemon").append("<img src=\'../img/pokemon/Alakazam.png\'>");
                 break;
         }
 
-        $("#consoleInfo").append("<h1>" + consoleName + ": </h1><br/>");
         $("#showConsoleHP").html("<progress value='" + hp_console + "' max='100'></progress> 100");
-        $("#playerInfo").append("<h1>" + playerName + ": </h1><br/>");
         $("#showPlayerHP").html("<progress value='" + hp_player + "' max='100'></progress> 100");
-        $("#playerAction").append("<p>What will " + playerPokemon + " do?</p>");
+        $("#textField").html("<p>What will " + playerPokemon + " do?</p>");
 
         $(".attackButton").click(function () {
             if (hp_player > 0 && hp_console > 0) {
@@ -212,33 +258,37 @@ $(document).ready(function () {
                 attack = $(this).val();
                 switch (attack) {
                     case "1" :
-                        var missChance = Math.round(Math.random() * 4) + 1;
-                        console.log(missChance);
-                        if (missChance === 5) {
+                        var missChance = Math.round(Math.random() * 3) + 1;
+                        if (missChance === 3) {
+
                             attack = 50;
                             hp_console = hp_console - attack;
                             if (hp_console <= 0) {
                                 var hp_console_temp = hp_console + attack;
                                 hp_console = 0;
                                 CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
+                                typing(playerPokemon + "'s attack was very effective!");
                                 win_alert(1500, "You won!! <br/> Your score is " + hp_player);
                             } else {
-                                CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                                typing(playerPokemon + " uses attack One!");
+                                setTimeout(function () {
+                                    CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                                }, 4000);
+                                playerAttack(playerPokemon, consolePokemon);
                                 setTimeout(function () {
                                     console_turn();
-                                }, 5000);
+                                }, 5500);
                             }
                         } else {
-                            alert("You missed!!");
+                            typing(playerPokemon + " missed attack One!");
                             setTimeout(function () {
                                 console_turn();
                             }, 2000);
                         }
                         break;
-                        
+
                     case "2" :
                         var missChance = Math.round(Math.random() * 2) + 1;
-                        console.log(missChance);
                         if (missChance === 3) {
                             attack = 30;
                             hp_console = hp_console - attack;
@@ -246,15 +296,20 @@ $(document).ready(function () {
                                 var hp_console_temp = hp_console + attack;
                                 hp_console = 0;
                                 CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
+                                typing(playerPokemon + "'s attack is very effective!");
                                 win_alert(1500, "You won!!<br/> Your score is " + hp_player);
                             } else {
-                                CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                                typing(playerPokemon + " uses attack Two!");
+                                setTimeout(function () {
+                                    CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                                }, 4000);
+                                playerAttack(playerPokemon, consolePokemon);
                                 setTimeout(function () {
                                     console_turn();
-                                }, 5000);
+                                }, 5500);
                             }
                         } else {
-                            alert("You missed!!");
+                            typing(playerPokemon + " missed attack Two!");
                             setTimeout(function () {
                                 console_turn();
                             }, 2000);
@@ -263,7 +318,6 @@ $(document).ready(function () {
 
                     case "3" :
                         var missChance = Math.round(Math.random() * 2) + 1;
-                        console.log(missChance);
                         if (missChance >= 2) {
                             attack = 20;
                             hp_console = hp_console - attack;
@@ -271,15 +325,20 @@ $(document).ready(function () {
                                 var hp_console_temp = hp_console + attack;
                                 hp_console = 0;
                                 CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
+                                typing(playerPokemon + "'s attack is very effective!");
                                 win_alert(1500, "You won!!<br/> Your score is " + hp_player);
                             } else {
-                                CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                                typing(playerPokemon + " uses attack Three!");
+                                setTimeout(function () {
+                                    CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
+                                }, 4000);
+                                playerAttack(playerPokemon, consolePokemon);
                                 setTimeout(function () {
                                     console_turn();
-                                }, 5000);
+                                }, 5500);
                             }
                         } else {
-                            alert("You missed!!");
+                            typing(playerPokemon + " missed attack Three!");
                             setTimeout(function () {
                                 console_turn();
                             }, 2000);
@@ -287,28 +346,28 @@ $(document).ready(function () {
                         break;
 
                     case "4" :
+                        typing(playerPokemon + " uses attack Four!");
                         attack = 10;
                         hp_console = hp_console - attack;
                         if (hp_console <= 0) {
                             var hp_console_temp = hp_console + attack;
                             hp_console = 0;
                             CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
+                            typing(playerPokemon + "'s attack is very effective!");
                             win_alert(1000, "You won!!<br/> Your score is " + hp_player);
                         } else {
                             setTimeout(function () {
                                 CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");
                             }, 4000);
-
                             playerAttack(playerPokemon, consolePokemon);
-
                             setTimeout(function () {
                                 console_turn();
-                            }, 6000);
+                            }, 5500);
                         }
                         break;
                 }
             } else {
-                alert("One of you is already dead :/");
+                alert("One of you is already dead");
             }
             ;
         });
