@@ -15,7 +15,7 @@ if (isset($_SESSION["login_user"])) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <link rel="stylesheet" href="../css/reset.css" />
             <link rel="stylesheet" href="../css/custom.css" />
-            <script src="../js/libs/jquery/jquery-2.1.4.js"></script>      
+            <script src="../js/jquery/jquery-2.1.4.js"></script>      
             <script src="../js/game.js"></script>
         </head>
         <body>
