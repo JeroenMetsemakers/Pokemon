@@ -1,6 +1,6 @@
 <?php
 include ("registeruser.php");
-if(isset($_SESSION["login_user"])){
+if(isset($_SESSION["username"])){
     header("location: php/game.php");
 }
 ?>
@@ -25,6 +25,7 @@ if(isset($_SESSION["login_user"])){
                 <label>Password confirmation:</label><br/>
                 <input id="password2" name="password2" type="password"><br/>                
                 <input name="submit" type="submit" value=" Register ">
+                <a href="../index.php">Back</a>                
                 <?php if(isset($_SESSION["error"])) {echo $_SESSION["error"];}; ?></span>
             </form>   
         </section>

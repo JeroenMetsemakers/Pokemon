@@ -12,10 +12,10 @@ if (isset($_POST["submit"])) {
 
         $username = stripslashes($username);
         $password = stripslashes($password);
-        $password = md5($password);
 //        $username = mysqli_real_escape_string($username);
 //        $password = mysqli_real_escape_string($password);
-
+        $password = md5($password);
+        
         $servername = "localhost";
         $dbuser = "root";
         $dbpass = "usbw";
@@ -27,19 +27,13 @@ if (isset($_POST["submit"])) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT username, gamesPlayed, gamesWon, gamesLost FROM users WHERE username = '$username' AND password = '$password'";
+        $sql = "SELECT username FROM users WHERE username = '$username' AND password = '$password'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // output data of each row
-            $_SESSION["login_user"] = $username;
-
-            while ($row = $result->fetch_assoc()) {
-                $_SESSION["gamesPlayed"] = $row["gamesPlayed"];
-                $_SESSION["gamesWon"] = $row["gamesWon"];
-                $_SESSION["gamesLost"] = $row["gamesLost"];
-            }
-            header("Location: php/game.php");
+            $_SESSION["username"] = $username;
+            header("Location: php/main.php");
             exit();
         } else {
             $_SESSION["error"] = "Username or Password is invalid";

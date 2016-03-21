@@ -10,7 +10,7 @@ body {
     background-repeat: no-repeat;
     background-position:center -32px;     
 }
-#container{
+#container, #mainContainer{
     border-radius:5px;    
     font-family: Pokemon;    
     background-size: cover;  
@@ -23,6 +23,7 @@ body {
     background-color: #FFFFFF;    
     overflow:hidden;
 }
+
 input, select{
     font-family: Pokemon;    
 }

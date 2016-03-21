@@ -184,25 +184,10 @@ $(document).ready(function () {
         }
     };
 
-    $("#startFightButton, #startForm, #console, #player, .inactiveButton").hide();
+    $("#console, #player, .inactiveButton").hide();
+    $("#startForm").show();
 
-    $("#startGameButton").click(function () {
-        $("#startGameButton").fadeOut();
-
-
-
-        setTimeout(function () {
-            $("#container").css("background-image", "url(../gif/gameboy/Startup.gif)");
-        }, 500);
-        setTimeout(function () {
-            $("#container").css("background-image", "url('')");
-        }, 4500);
-        setTimeout(function () {
-            $("#startFightButton, #startForm").fadeIn();
-        }, 5000);
-    });
-
-    $("#startFightButton").click(function () {
+       $("#startFightButton").click(function () {
         $("#container").css("background-image", "url(../img/background/bg.png)");
         playerPokemon = $("#playerPokemonChoice option:selected").text();
         $("#startFightButton, #startForm").hide();
@@ -210,17 +195,17 @@ $(document).ready(function () {
 
         switch (playerPokemon) {
             case "Bulbasaur" :
-                $("#playerInfo").append("Bulbasaur");
+                $("#partay").append("Bulbasaur");
                 $("#playerPokemon").append("<img src=\'../gif/pokemon/Bulbasaur/back2.gif\'>");
                 break;
 
             case "Charizard" :
-                $("#playerInfo").append("Charizard");
+                $("#partay").append("Charizard");
                 $("#playerPokemon").append("<img src=\'../gif/pokemon/Charizard/front2.gif\'>");
                 break;
 
             case "Pikachu" :
-                $("#playerInfo").append("Pikachu");
+                $("#partay").append("Pikachu");
                 $("#playerPokemon").append("<img src=\'../img/pokemon/Alakazam.png\'>");
                 break;
         }

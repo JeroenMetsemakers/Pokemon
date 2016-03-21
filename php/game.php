@@ -2,7 +2,7 @@
 session_start();
 $_SESSION["error"] = "";
 
-if (isset($_SESSION["login_user"])) {   
+if (isset($_SESSION["username"])) {   
     ?>
 
     <!DOCTYPE html>
@@ -35,7 +35,7 @@ if (isset($_SESSION["login_user"])) {
                             <option value="pikachu">Pikachu</option>
                         </select>
                     </form>
-                    <button class="mainButton" id="startGameButton">Start Game</button>
+
                     <button class="mainButton" id="startFightButton">Start Fight</button>                    
                 </article>
                 <section id="player">
@@ -66,12 +66,7 @@ if (isset($_SESSION["login_user"])) {
                     </section>
                 </section>
             </section>
-            <button value="logout" name="logout" onclick="location.href = 'logout.php';">LogOut</button>
-            <?php 
-            echo "<br/>Games playes: " . $_SESSION["gamesPlayed"]. "<br/>";
-            echo "Games won: " . $_SESSION["gamesWon"] . "<br/>";
-            echo "Games lost: " . $_SESSION["gamesLost"];    
-            ?>
+            <button onclick="location.href = 'main.php';">Main</button>
         </body>
     </html>
 
