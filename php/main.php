@@ -18,12 +18,9 @@
     <body>
         <section id="container">
             <a href="game.php">Play game</a>
-            <a href="logout.php">Log out</a>   
-            <?php 
-                echo "<br/>Games played: " . $_SESSION["gamesPlayed"]. "<br/>";
-                echo "Games won: " . $_SESSION["gamesWon"] . "<br/>";
-                echo "Games lost: " . $_SESSION["gamesLost"];    
-            ?>            
+            <form action="../index.php" method="post">
+                <button name="logout" name="logout" id="logout">Log out</button>
+            </form>
         </section>
     </body>
 </html>

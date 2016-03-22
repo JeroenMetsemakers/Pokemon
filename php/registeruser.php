@@ -31,17 +31,17 @@ if (isset($_POST["submit"])) {
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                $_SESSION["error"] = "Username already taken";
+                echo "Username already taken";
                 $conn->close();              
             } else {
                 // create new user in database
-                $sql = "INSERT INTO users (username, password, gamesPlayed, gamesWon, gamesLost)
-                        VALUES ('$username', '$password', '0', '0', '0')";
+                $sql = "INSERT INTO users (username, password, score, gamesPlayed, gamesWon, gamesLost)
+                        VALUES ('$username', '$password', '0', '0', '0', '0')";
 
                 if ($conn->query($sql) === TRUE) {
                     header("Location: ../index.php");
                 } else {
-                    $_SESSION["error"] = "Couldn't create new user";
+                    echo "Couldn't create new user";
                 }
                 $conn->close();
                 exit();

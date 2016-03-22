@@ -1,6 +1,7 @@
 <?php
-    session_start();
-    session_unset(); 
-    session_destroy();
-    header("Location: ../index.php");
+
+$cookie_name = 'username';
+unset($_COOKIE[$cookie_name]);
+
+header("Location: ../index.php");
 ?>

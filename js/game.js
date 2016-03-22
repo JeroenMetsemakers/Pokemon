@@ -1,11 +1,41 @@
 $(document).ready(function () {
     var hp_player = 100;
     var hp_console = 100;
-    var turn = true;
     var consoleName = "Giovanni";
     var playerPokemon = "Default";
     var consolePokemon = "Default";
     var attack = "";
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ')
+                c = c.substring(1);
+            if (c.indexOf(cname) === 0)
+                return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    var score = getCookie("score");
+    var score = parseInt(score);
+    var gamesPlayed = getCookie("gamesPlayed");
+    var gamesWon = getCookie("gamesWon");
+    var gamesLost = getCookie("gamesLost");
+
+    var setCookie = function (name, value) {
+        document.cookie = name + "=" + value;
+    };
+
+    function deleteCookie(cookieName) {
+        var d = new Date();
+        d.setTime(d.getTime());
+        var cookieExpireDate = "expires=" + d.toString();
+        document.cookie = cookieName + "=expired;" + cookieExpireDate;
+    }
+
+
 
     var time_out = function (elem_id, delayms, input) {
         setTimeout(function () {
@@ -93,6 +123,15 @@ $(document).ready(function () {
                     }, 2000);
                     consoleAttack(consolePokemon);
                     win_alert(3500, consoleName + " won!!");
+                    gamesPlayed++;
+                    gamesLost++;
+                    deleteCookie(gamesPlayed);
+                    deleteCookie(gamesLost);
+                    setCookie("gamesPlayed", gamesPlayed);
+                    setCookie("gamesLost", gamesLost);
+                    setTimeout(function () {
+                        $(location).attr('href', 'endGame.php');
+                    }, 4000);
                 } else {
                     setTimeout(function () {
                         CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
@@ -118,6 +157,15 @@ $(document).ready(function () {
                     }, 2000);
                     consoleAttack(consolePokemon);
                     win_alert(3500, consoleName + " won!!");
+                    gamesPlayed++;
+                    gamesLost++;
+                    deleteCookie(gamesPlayed);
+                    deleteCookie(gamesLost);
+                    setCookie("gamesPlayed", gamesPlayed);
+                    setCookie("gamesLost", gamesLost);
+                    setTimeout(function () {
+                        $(location).attr('href', 'endGame.php');
+                    }, 4000);
                 } else {
                     setTimeout(function () {
                         CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
@@ -141,9 +189,17 @@ $(document).ready(function () {
                         CountDown(hp_player_temp, hp_player_temp, 1000, "#showPlayerHP");
                         typing("It's super effective!");
                     }, 2000);
-
                     consoleAttack(consolePokemon);
                     win_alert(3500, consoleName + " won!!");
+                    gamesPlayed++;
+                    gamesLost++;
+                    deleteCookie(gamesPlayed);
+                    deleteCookie(gamesLost);
+                    setCookie("gamesPlayed", gamesPlayed);
+                    setCookie("gamesLost", gamesLost);
+                    setTimeout(function () {
+                        $(location).attr('href', 'endGame.php');
+                    }, 4000);
                 } else {
                     setTimeout(function () {
                         CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
@@ -170,6 +226,15 @@ $(document).ready(function () {
                     }, 2000);
                     consoleAttack(consolePokemon);
                     win_alert(3500, consoleName + " won!!");
+                    gamesPlayed++;
+                    gamesLost++;
+                    deleteCookie(gamesPlayed);
+                    deleteCookie(gamesLost);
+                    setCookie("gamesPlayed", gamesPlayed);
+                    setCookie("gamesLost", gamesLost);
+                    setTimeout(function () {
+                        $(location).attr('href', 'endGame.php');
+                    }, 4000);
                 } else {
                     setTimeout(function () {
                         CountDown(hp_player + attack, attack, 1000, "#showPlayerHP");
@@ -183,11 +248,13 @@ $(document).ready(function () {
                 break;
         }
     };
-
+    $("#gameExit").click(function () {
+        $(location).attr("href", "main.php");
+    });
     $("#console, #player, .inactiveButton").hide();
     $("#startForm").show();
 
-       $("#startFightButton").click(function () {
+    $("#startFightButton").click(function () {
         $("#container").css("background-image", "url(../img/background/bg.png)");
         playerPokemon = $("#playerPokemonChoice option:selected").text();
         $("#startFightButton, #startForm").hide();
@@ -243,8 +310,9 @@ $(document).ready(function () {
                 attack = $(this).val();
                 switch (attack) {
                     case "1" :
-                        var missChance = Math.round(Math.random() * 3) + 1;
-                        if (missChance === 3) {
+//                        var missChance = Math.round(Math.random() * 2) + 1;
+                        var missChance = 2;
+                        if (missChance === 2) {
 
                             attack = 50;
                             hp_console = hp_console - attack;
@@ -253,7 +321,18 @@ $(document).ready(function () {
                                 hp_console = 0;
                                 CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
                                 typing(playerPokemon + "'s attack was very effective!");
-                                win_alert(1500, "You won!! <br/> Your score is " + hp_player);
+                                score = score + hp_player;
+                                gamesPlayed++;
+                                gamesWon++;
+                                deleteCookie(score);
+                                deleteCookie(gamesPlayed);
+                                deleteCookie(gamesWon);
+                                setCookie("score", score);
+                                setCookie("gamesPlayed", gamesPlayed);
+                                setCookie("gamesWon", gamesWon);
+                                setTimeout(function () {
+                                    $(location).attr('href', 'endGame.php');
+                                }, 4000);
                             } else {
                                 typing(playerPokemon + " uses attack One!");
                                 setTimeout(function () {
@@ -273,8 +352,8 @@ $(document).ready(function () {
                         break;
 
                     case "2" :
-                        var missChance = Math.round(Math.random() * 2) + 1;
-                        if (missChance === 3) {
+                        var missChance = Math.round(Math.random() * 1) + 1;
+                        if (missChance === 2) {
                             attack = 30;
                             hp_console = hp_console - attack;
                             if (hp_console <= 0) {
@@ -282,7 +361,19 @@ $(document).ready(function () {
                                 hp_console = 0;
                                 CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
                                 typing(playerPokemon + "'s attack is very effective!");
-                                win_alert(1500, "You won!!<br/> Your score is " + hp_player);
+                                console.log("You won!! <br/> Your score is " + hp_player);
+                                score = score + hp_player;
+                                gamesPlayed++;
+                                gamesWon++;
+                                deleteCookie(score);
+                                deleteCookie(gamesPlayed);
+                                deleteCookie(gamesWon);
+                                setCookie("score", score);
+                                setCookie("gamesPlayed", gamesPlayed);
+                                setCookie("gamesWon", gamesWon);
+                                setTimeout(function () {
+                                    $(location).attr('href', 'endGame.php');
+                                }, 4000);
                             } else {
                                 typing(playerPokemon + " uses attack Two!");
                                 setTimeout(function () {
@@ -311,7 +402,19 @@ $(document).ready(function () {
                                 hp_console = 0;
                                 CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
                                 typing(playerPokemon + "'s attack is very effective!");
-                                win_alert(1500, "You won!!<br/> Your score is " + hp_player);
+                                console.log("You won!! <br/> Your score is " + hp_player);
+                                score = score + hp_player;
+                                gamesPlayed++;
+                                gamesWon++;
+                                deleteCookie(score);
+                                deleteCookie(gamesPlayed);
+                                deleteCookie(gamesWon);
+                                setCookie("score", score);
+                                setCookie("gamesPlayed", gamesPlayed);
+                                setCookie("gamesWon", gamesWon);
+                                setTimeout(function () {
+                                    $(location).attr('href', 'endGame.php');
+                                }, 4000);
                             } else {
                                 typing(playerPokemon + " uses attack Three!");
                                 setTimeout(function () {
@@ -339,7 +442,19 @@ $(document).ready(function () {
                             hp_console = 0;
                             CountDown(hp_console_temp, hp_console_temp, 1000, "#showConsoleHP");
                             typing(playerPokemon + "'s attack is very effective!");
-                            win_alert(1000, "You won!!<br/> Your score is " + hp_player);
+                            console.log("You won!! <br/> Your score is " + hp_player);
+                            score = score + hp_player;
+                            gamesPlayed++;
+                            gamesWon++;
+                            deleteCookie(score);
+                            deleteCookie(gamesPlayed);
+                            deleteCookie(gamesWon);
+                            setCookie("score", score);
+                            setCookie("gamesPlayed", gamesPlayed);
+                            setCookie("gamesWon", gamesWon);
+                            setTimeout(function () {
+                                $(location).attr('href', 'endGame.php');
+                            }, 4000);
                         } else {
                             setTimeout(function () {
                                 CountDown(hp_console + attack, attack, 1000, "#showConsoleHP");

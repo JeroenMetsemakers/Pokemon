@@ -1,6 +1,6 @@
 <?php
 include("php/login.php");
-if (isset($_SESSION["username"])) {
+if(isset($_COOKIE['username'])) {
     header("location: php/game.php");
 }
 ?>
@@ -28,9 +28,9 @@ if (isset($_SESSION["username"])) {
                     <input id="password" name="password" type="password"><br/>
                     <input name="submit" type="submit" value=" Login ">
                     <a href="php/register.php">Register</a>
-                    <?php if (isset($_SESSION["error"])) {
-                        echo $_SESSION["error"];
-                    }; ?></span>
+                    <?php 
+                        echo $error;
+                    ?>
                 </form>
             </article>                
         </section>

@@ -1,12 +1,20 @@
 <?php
 
-session_start();
-$_SESSION["error"] = "";
+
+$error = "";
+
+if (isset($_POST["logout"])) {
+    $cookie_name = 'username';
+    unset($_COOKIE[$cookie_name]);
+    // empty value and expiration one hour before
+    $res = setcookie($cookie_name, '', time() - 3600);    
+}
 
 if (isset($_POST["submit"])) {
     if (empty($_POST["username"]) || empty($_POST["password"])) {
-        $_SESSION["error"] = "Username or Password is invalid";
+        $error = "Username or Password is invalid";
     } else {
+        
         $username = $_POST["username"];
         $password = $_POST["password"];
 
@@ -31,12 +39,15 @@ if (isset($_POST["submit"])) {
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // output data of each row
-            $_SESSION["username"] = $username;
+            $cookie_name = "username";
+            $cookie_value = $username;
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day           
+
+            
             header("Location: php/main.php");
             exit();
         } else {
-            $_SESSION["error"] = "Username or Password is invalid";
+            $error = "Username or Password is invalid";
         }
         $conn->close();
     }

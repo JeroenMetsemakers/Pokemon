@@ -1,8 +1,8 @@
 <?php
-session_start();
+
 $_SESSION["error"] = "";
 
-if (isset($_SESSION["username"])) {   
+if(isset($_COOKIE['username'])) { 
     ?>
 
     <!DOCTYPE html>
@@ -30,7 +30,7 @@ if (isset($_SESSION["username"])) {
                 <article id="main"> 
                     <form id="startForm">
                         <select id="playerPokemonChoice" name="playerPokemonChoice">
-                            <option value="bulbasaur">Bulbasaur</option>
+                            <option value="bulbasaur">Bulbasaur</option>                        
                             <option value="charizard">Charizard</option>
                             <option value="pikachu">Pikachu</option>
                         </select>
@@ -66,7 +66,7 @@ if (isset($_SESSION["username"])) {
                     </section>
                 </section>
             </section>
-            <button onclick="location.href = 'main.php';">Main</button>
+            <button id="gameExit">Exit game</button>
         </body>
     </html>
 

@@ -1,9 +1,8 @@
 <?php
 
-session_start();
-if (isset($_SESSION["username"])) {
+if(isset($_COOKIE['username'])) {
 
-    $username = $_SESSION['username'];
+    $username = $_COOKIE['username'];
     $servername = "localhost";
     $dbuser = "root";
     $dbpass = "usbw";
@@ -16,18 +15,30 @@ if (isset($_SESSION["username"])) {
     }
 
 
-    $sql = "SELECT gamesPlayed, gamesWon, gamesLost FROM users WHERE username = '$username'";
+    $sql = "SELECT score, gamesPlayed, gamesWon, gamesLost FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // output data of each row
+ 
         $row = $result->fetch_assoc();
-        $_SESSION["gamesPlayed"] = $row["gamesPlayed"];
-        $_SESSION["gamesWon"] = $row["gamesWon"];
-        $_SESSION["gamesLost"] = $row["gamesLost"];
+        
+        $score = $row["score"];       
+        $gamesPlayed = $row["gamesPlayed"];
+        $gamesWon = $row["gamesWon"];
+        $gamesLost = $row["gamesLost"];
+        
+        setcookie("score", $score);         
+        setcookie("gamesPlayed", $gamesPlayed); 
+        setcookie("gamesWon", $gamesWon);
+        setcookie("gamesLost", $gamesLost);                 
+        
     } else {
-        $_SESSION["error"] = "Username or Password is invalid";
+        echo "Username or Password is invalid";
     }
-    $conn->close();
+    $conn->close();     
+} else {
+
+      echo "Cookie named '" . $cookie_name . "' is not set!";      
 }
+
 ?>
