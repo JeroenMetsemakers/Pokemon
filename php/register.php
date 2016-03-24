@@ -1,7 +1,7 @@
 <?php
 include ("registeruser.php");
 if(isset($_SESSION["username"])){
-    header("location: php/game.php");
+    header("location: game.php");
 }
 ?>
 <!DOCTYPE html>

@@ -14,5 +14,3 @@ $(document).ready(function () {
         }, 5000);
     });
 });
-
-inlogForm
