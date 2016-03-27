@@ -2,13 +2,14 @@
 
 session_start();
 if (isset($_SESSION["username"])) {
-
+    
+    $username = $_SESSION['username'];
+    
     $servername = "localhost";
     $dbuser = "root";
     $dbpass = "usbw";
     $dbname = "Pokemon";
-    $_SESSION["topuser"] = "default";
-    $_SESSION["topscore"] = "default";
+    $arr = array();
 
     $conn = new mysqli($servername, $dbuser, $dbpass, $dbname);
 
@@ -17,36 +18,42 @@ if (isset($_SESSION["username"])) {
     }
 
 
-    $sql = "SELECT username, score FROM users";
+    $sql = "SELECT username, score FROM users ORDER BY score DESC limit 5";
     $result = $conn->query($sql);
-
-    while ($row = $result->fetch_assoc()) {
-        echo $row['username'] . '<br />';
-    }
-
-
 
     if ($result->num_rows > 0) {
         // output data of each row
-        while ($row = $result->fetch_assoc()) {
-            $_SESSION["topuser"] = $row["username"];
-            $_SESSION["topscore"] = $row["score"];
-        }
+        $results = array();
+        while($row = mysqli_fetch_assoc($result))
+        {
+            
+            $results = $row["username"];
+            $results = $row["score"];            
+            $results = $row;
+        }        
+ 
+
+        
+        
+        
     } else {
         $_SESSION["error"] = "Username or Password is invalid";
     }
     $conn->close();
+    
+    
+    
+    
+    
+    
+    
+
     /* set out document type to text/javascript instead of text/html */
     header("Content-type: text/javascript");
 
     /* our multidimentional php array to pass back to javascript via ajax */
-    $arr = array(
-        array(
-            "topuser" => $_SESSION["topuser"],
-            "topscore" => $_SESSION["topscore"],
-        )
-    );
 
-    echo json_encode($arr);
+
+    echo json_encode($results);
 }
 ?>

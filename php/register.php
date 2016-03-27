@@ -16,18 +16,21 @@ if(isset($_SESSION["username"])){
         <link rel="stylesheet" href="../css/custom.css" />    
     </head>
     <body>
-        <section id="container">
-            <form action="" method="post">
-                <label >UserName :</label><br/>
-                <input id="name" name="username" type="text"><br/>
-                <label>Password :</label><br/>
-                <input id="password1" name="password1" type="password"><br/>
-                <label>Password confirmation:</label><br/>
-                <input id="password2" name="password2" type="password"><br/>                
-                <input name="submit" type="submit" value=" Register ">
-                <a href="../index.php">Back</a>                
-                <?php if(isset($_SESSION["error"])) {echo $_SESSION["error"];}; ?></span>
-            </form>   
+        <section id="container" class="regcontainer">
+            <article id="regform">
+                <form action="" method="post">
+                    <label >UserName:</label><br/>
+                    <input id="name" name="username" type="text"><br/>
+                    <label>Password:</label><br/>
+                    <input id="password1" name="password1" type="password"><br/>
+                    <label>Confirm password:</label><br/>
+                    <input id="password2" name="password2" type="password"><br/> 
+                    <button class="btn" name="submit" type="submit">Register</button>                    
+                    <!--<input name="submit" type="submit" value=" Register ">-->
+                    <a class="link" href="../index.php">Back</a>                                            
+                </form> 
+            </article>
+                    <?php if(isset($_SESSION["error"])) {echo $_SESSION["error"];}; ?></span>               
         </section>
     </body>
 </html>

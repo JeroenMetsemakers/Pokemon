@@ -110,6 +110,7 @@ $(document).ready(function () {
     var win_alert = function (delayms, input) {
         setTimeout(function () {
             alert(input);
+            window.location.href = "main.php";              
         }, delayms);
     };
 
@@ -197,7 +198,7 @@ $(document).ready(function () {
                 typing("It's super effective!");
             }, 2000);
             consoleAttack(consolePokemon);
-            win_alert(3500, consoleName + " won!!");
+            win_alert(3500, consoleName + " won!!");          
             updateJsnLost();            
         } else {
             setTimeout(function () {
@@ -235,7 +236,7 @@ $(document).ready(function () {
 
     $("#console, #player, .inactiveButton").hide();
     $("#startForm").show();
-
+    $("#container").css("background-image", "url(../img/background/inlog.png)");
     $("#startFightButton").click(function () {
         $("#container").css("background-image", "url(../img/background/bg.png)");
         playerPokemon = $("#playerPokemonChoice option:selected").text();
@@ -260,7 +261,8 @@ $(document).ready(function () {
                 break;
         }
 
-        var x = Math.round(Math.random() * 2) + 1;
+//        var x = Math.round(Math.random() * 2) + 1;
+          var x = 2;
         switch (x) {
             case 1 :
                 $("#enemyName").append("Bulbasaur");
@@ -293,8 +295,7 @@ $(document).ready(function () {
                 attack = $(this).val();
                 switch (attack) {
                     case "1" :
-//                        var missChance = Math.round(Math.random() * 3) + 1;
-                        var missChance = 3;
+                        var missChance = Math.round(Math.random() * 2) + 1;
                         if (missChance === 3) {
                             playerFunction(50, "one");
                         } else {
@@ -303,8 +304,8 @@ $(document).ready(function () {
                         break;
 
                     case "2" :
-                        var missChance = Math.round(Math.random() * 2) + 1;
-                        if (missChance === 3) {
+                        var missChance = Math.round(Math.random() * 1) + 1;
+                        if (missChance === 2) {
                             playerFunction(30, "two");
                         } else {
                             playerMissed("two");

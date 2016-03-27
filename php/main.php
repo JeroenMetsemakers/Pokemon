@@ -16,9 +16,13 @@
         <script src="../js/main.js"></script>        
     </head>
     <body>
-        <section id="container">
-            <a href="game.php">Play game</a>
-            <a href="logout.php">Log out</a>  
+        <section id="MainContainer">
+            <article id="overall"></article>
+            <article id="topUsers"></article>            
+            <article id="pokebuttons">
+                <a href="game.php"><button>Play game</button></a>
+                <a href="logout.php"><button>Log out</button></a>  
+            </article>
             <ul id="list"></ul>
         </section>
     </body>

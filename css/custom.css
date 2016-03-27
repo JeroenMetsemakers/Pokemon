@@ -10,7 +10,7 @@ body {
     background-repeat: no-repeat;
     background-position:center -32px;     
 }
-#container, #mainContainer{
+#container, #mainContainer{   
     border-radius:5px;    
     font-family: Pokemon;    
     background-size: cover;  
@@ -22,6 +22,69 @@ body {
     border: 1px solid #000000;
     background-color: #FFFFFF;    
     overflow:hidden;
+}
+.power{
+    background-image: url("../img/background/powerbutton.png");       
+  
+}
+.power:hover{
+        background-image: url("../img/background/powerbutton1.png");    
+        -webkit-transition: background-image 0.2s ease-in-out;
+        transition: background-image 0.6s ease-in-out;
+}
+#inlogForm, #regform{
+    width:270px;
+    height:160px;
+    margin:150px auto;
+}
+input{
+    padding:2px;
+    margin:4px 0px 10px 0px;
+}
+.regcontainer{
+    background-image: url("../img/background/inlog.png");     
+}
+#MainContainer{
+    background-image: url("../img/background/pokedex2.png"); 
+    border-radius:5px;    
+    font-family: Pokemon;    
+    background-repeat: no-repeat;
+    min-height: 400px;
+    max-height: 400px;
+    max-width: 600px;
+    margin: 144px auto;
+    border: 1px solid #000000;
+    background-color: #FFFFFF;    
+    overflow:hidden;    
+}
+#overall{
+    width:220px;
+    height:200px;
+    margin: 60px 0px 0px 86px;
+    line-height: 20px;
+    font-size: 14px;
+    float:left;
+}
+#topUsers{
+    width:200px;
+    height:80px;
+    margin: 70px 0px 0px 20px;
+    line-height: 20px;
+    font-size: 14px;
+    float:left;
+}
+#pokebuttons{
+    width:200px;
+    height:80px;
+    margin: 310px 0px 0px 96px;
+    line-height: 20px;
+    font-size: 14px;
+    
+}
+.link{
+    height:40px;
+    margin-top:30px;
+    margin-left:20px;   
 }
 
 input, select{
@@ -78,6 +141,30 @@ progress{
     cursor:pointer;
     font-size: 16px;
     float:left;   
+}
+.btn{
+    font-family: Pokemon;    
+    height:40px;
+    background-color:#1a242f;
+    color:#FFFFFF;
+    padding-top:4px;
+    text-align:center;
+    cursor:pointer;
+    font-size: 14px;
+    float:left;   
+     background: #f88088;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e09828), to(#886838));
+    background: -webkit-linear-gradient(top, #e09828, #886838);
+    background: -moz-linear-gradient(top, #e09828, #886838);
+    background: -ms-linear-gradient(top, #e09828, #886838);
+    background: -o-linear-gradient(top, #e09828, #886838);    
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+.btn:hover {
+    background: #886838;
+    color: #ccc;
 }
 .attackButton:hover{
     background-color:#253c54;   

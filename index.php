@@ -19,21 +19,18 @@ if (isset($_SESSION["username"])) {
         <script src="js/index.js"></script>                
     </head>
     <body>
-        <section id="container">
-            <button class="mainButton" id="startGameButton">Start Game</button>  
+        <section id="container" class="power">            
             <article id="inlogForm">
                 <form action="" method="post">
                     <label >UserName :</label><br/>
-                    <input id="name" name="username" type="text"><br/>
+                    <input id="name" name="username" type="text" autofocus><br/>
                     <label>Password :</label><br/>
-                    <input id="password" name="password" type="password"><br/>
-                    <input name="submit" type="submit" value=" Login ">
-                    <a href="php/register.php">Register</a>
-                    <?php if (isset($_SESSION["error"])) {
-                        echo $_SESSION["error"];
-                    } ?></span>
+                    <input id="password" name="password" type="password"><br/>              
+                    <button class="btn" name="submit" >Log in</button>
+                    <a class="link" href="php/register.php">Register</a>
                 </form>
-            </article>                
-        </section>
-    </body>
+            </article>  
+            <?php if (isset($_SESSION["error"])) {echo $_SESSION["error"]; } ?></span>       
+    </section>
+</body>
 </html>

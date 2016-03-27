@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     $.getJSON('../php/sendData.php', function (data) {
 
         $.each(data, function (key, val) {
@@ -10,22 +10,23 @@ $(document).ready(function () {
             gamesWon = val.gamesWon;
             gamesLost = val.gamesLost;
 
-            $('#container').append('<br/>Welkom ' + username + '<br/>Score:  ' + score + '<br/>Games played: ' + gamesPlayed + '<br/>Games won: ' + gamesWon + '<br/>Games lost: ' + gamesLost);
-
+            $('#overall').append('Score:  <br/>' + score + '<br/>Games played: <br/>' + gamesPlayed + '<br/>Games won: <br/>' + gamesWon + '<br/>Games lost: <br/>' + gamesLost);
+            $("#topUsers").append("Welkom " + username);
         });
     });
 
-        $.getJSON('../php/getTop.php', function (data) {
-              
-        $.each(data, function (key, val) {
-
-            topuser = val.username;
-            topscore = val.score;
-
-            $('#list').append('<li>' + topuser + ' -- ' + 'Score: ' + topscore + '</li>');
-
-        });
-    });
+//    $.getJSON('../php/getTop.php', function (data) {
+//
+//        $.each(data, function (key, val) {
+//
+//            topuser = val.username;
+//            topscore = val.score;
+//
+//
+//            $('#MainContainer').append('<br/>Welkom ' + topuser + '<br/>Score:  ' + topscore);
+//
+//        });
+//    });
 
 
 });

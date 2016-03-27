@@ -1,16 +1,13 @@
 $(document).ready(function () {
     $("#inlogForm").hide();
-    $("#startGameButton").click(function () {
-        $("#startGameButton").fadeOut();
+    $(".power").click(function () {
+        $("#container").css("background-image", "url(gif/gameboy/Startup.gif)");
 
         setTimeout(function () {
-            $("#container").css("background-image", "url(gif/gameboy/Startup.gif)");
-        }, 500);
-        setTimeout(function () {
-            $("#container").css("background-image", "url('')");
+            $("#container").css("background-image", "url('img/background/inlog.png')");
         }, 4500);
         setTimeout(function () {
             $("#inlogForm").fadeIn();
-        }, 5000);
+        }, 5200);
     });
 });
