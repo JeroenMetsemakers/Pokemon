@@ -110,7 +110,7 @@ $(document).ready(function () {
     var win_alert = function (delayms, input) {
         setTimeout(function () {
             alert(input);
-//            window.location.href = "main.php";              
+            window.location.href = "main.php";              
         }, delayms);
     };
 

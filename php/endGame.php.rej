@@ -1,0 +1,8 @@
+diff a/php/endGame.php b/php/endGame.php	(rejected hunks)
+@@ -1,6 +1,5 @@
+ <?php
+ 
+-}
+ include 'dbconnect.php';
+ 
+ $data = json_decode($jsonString);

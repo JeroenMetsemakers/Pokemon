@@ -1,6 +1,7 @@
 <?php
 
 include 'dbconnect.php';
+$jsonString = $_POST["formjson"];
 
 $data = json_decode($jsonString);
 
@@ -19,7 +20,7 @@ foreach ($data as $d) {
 
     if ($conn->query($sql) === TRUE) {
         
-       echo "gelukt bitch";
+       echo "Data saved";
     } else {
         echo "Couldn't save data";
     }
