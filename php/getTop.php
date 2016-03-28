@@ -5,17 +5,7 @@ if (isset($_SESSION["username"])) {
     
     $username = $_SESSION['username'];
     
-    $servername = "localhost";
-    $dbuser = "root";
-    $dbpass = "usbw";
-    $dbname = "Pokemon";
-    $arr = array();
-
-    $conn = new mysqli($servername, $dbuser, $dbpass, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include 'dbconnect.php';
 
 
     $sql = "SELECT username, score FROM users ORDER BY score DESC limit 5";

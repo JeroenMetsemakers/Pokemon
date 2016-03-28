@@ -66,7 +66,6 @@ if (isset($_SESSION["username"])) {
                     </section>
                 </section>
             </section>
-            <button onclick="location.href = 'main.php';">Main</button>
         </body>
     </html>
 

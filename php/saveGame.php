@@ -16,16 +16,7 @@ if (isset($_POST["submit"])) {
 //        $username = mysqli_real_escape_string($username);
 //        $password = mysqli_real_escape_string($password);
 
-            $servername = "localhost";
-            $dbuser = "root";
-            $dbpass = "usbw";
-            $dbname = "Pokemon";
-
-            $conn = new mysqli($servername, $dbuser, $dbpass, $dbname);
-
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            include 'dbconnect.php';
 
             $sql = "SELECT * FROM users WHERE username = '$username'";
             $result = $conn->query($sql);

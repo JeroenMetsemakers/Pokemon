@@ -5,16 +5,7 @@ if (isset($_SESSION["username"])) {
 
     $username = $_SESSION['username'];
     
-    $servername = "localhost";
-    $dbuser = "root";
-    $dbpass = "usbw";
-    $dbname = "Pokemon";
-
-    $conn = new mysqli($servername, $dbuser, $dbpass, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include 'dbconnect.php';
 
 
     $sql = "SELECT score, gamesPlayed, gamesWon, gamesLost FROM users WHERE username = '$username'";

@@ -110,7 +110,7 @@ $(document).ready(function () {
     var win_alert = function (delayms, input) {
         setTimeout(function () {
             alert(input);
-            window.location.href = "main.php";              
+//            window.location.href = "main.php";              
         }, delayms);
     };
 
@@ -241,8 +241,7 @@ $(document).ready(function () {
         $("#container").css("background-image", "url(../img/background/bg.png)");
         playerPokemon = $("#playerPokemonChoice option:selected").text();
         $("#startFightButton, #startForm").hide();
-        $("#console, #player").show();
-        console.log("score = " + score);        
+        $("#console, #player").show();      
 
         switch (playerPokemon) {
             case "Bulbasaur" :
@@ -267,13 +266,13 @@ $(document).ready(function () {
             case 1 :
                 $("#enemyName").append("Bulbasaur");
                 consolePokemon = "Bulbasaur";
-                $("#consolePokemon").append("<img src=\'../gif/pokemon/bulbasaur/front2.gif\'>");
+                $("#consolePokemon").append("<img src=\'../gif/pokemon/Bulbasaur/front2.gif\'>");
                 break;
 
             case 2 :
                 $("#enemyName").append("Charizard");
                 consolePokemon = "Charizard";
-                $("#consolePokemon").append("<img src=\'../gif/pokemon/charizard/front.gif\'>");
+                $("#consolePokemon").append("<img src=\'../gif/pokemon/Charizard/front.gif\'>");
                 break;
 
             case 3 :

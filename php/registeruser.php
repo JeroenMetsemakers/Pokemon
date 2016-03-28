@@ -17,16 +17,7 @@ if (isset($_POST["submit"])) {
 //        $username = mysqli_real_escape_string($username);
 //        $password = mysqli_real_escape_string($password);
 
-            $servername = "localhost";
-            $dbuser = "root";
-            $dbpass = "usbw";
-            $dbname = "Pokemon";
-
-            $conn = new mysqli($servername, $dbuser, $dbpass, $dbname);
-
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+             include 'dbconnect.php';
 
             $sql = "SELECT * FROM users WHERE username = '$username'";
             $result = $conn->query($sql);
@@ -36,8 +27,8 @@ if (isset($_POST["submit"])) {
                 $conn->close();              
             } else {
                 // create new user in database
-                $sql = "INSERT INTO users (username, password, gamesPlayed, gamesWon, gamesLost)
-                        VALUES ('$username', '$password', '0', '0', '0')";
+                $sql = "INSERT INTO users (username, password, score, gamesPlayed, gamesWon, gamesLost)
+                        VALUES ('$username', '$password', '0','0', '0', '0')";
 
                 if ($conn->query($sql) === TRUE) {
                     header("Location: ../index.php");

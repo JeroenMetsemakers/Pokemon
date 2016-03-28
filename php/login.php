@@ -15,16 +15,7 @@ if (isset($_POST["submit"])) {
 //        $password = mysqli_real_escape_string($password);
         $password = md5($password);
         
-        $servername = "localhost";
-        $dbuser = "root";
-        $dbpass = "usbw";
-        $dbname = "Pokemon";
-
-        $conn = new mysqli($servername, $dbuser, $dbpass, $dbname);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    include 'dbconnect.php';
 
         $sql = "SELECT username FROM users WHERE username = '$username' AND password = '$password'";
         $result = $conn->query($sql);

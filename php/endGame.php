@@ -1,17 +1,6 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "usbw";
-$dbname = "pokemon";
-
-$jsonString = $_POST["formjson"];
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+include 'dbconnect.php';
 
 $data = json_decode($jsonString);
 
@@ -29,7 +18,8 @@ foreach ($data as $d) {
 
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: main.php");
+        
+       echo "gelukt bitch";
     } else {
         echo "Couldn't save data";
     }
